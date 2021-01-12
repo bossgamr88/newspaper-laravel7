@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.index');
 });
+
+Route::get('category', function () {
+    return view('frontend.category');
+});
+
+Route::get('post', function () {
+    return view('frontend.article');
+});
+
+
