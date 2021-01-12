@@ -25,4 +25,8 @@ Route::get('post', function () {
     return view('frontend.article');
 });
 
+Route::get('admin', function () {
+    return view('backend.index');
+});
+
 
