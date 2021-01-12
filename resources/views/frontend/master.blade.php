@@ -3,8 +3,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>COLORMAG - NEWS SITE</title>
 <link href="{{ url('public/css/bootstrap.min.css') }}" rel="stylesheet"/>
-<link href="{{ url('public/css/style.css') }}" rel="stylesheet"/>
-<script src="{{ url('public/js/.min.js') }}"></script>
+<!-- <link href="{{ url('public/css/style.css') }}" rel="stylesheet"/> -->
+<!-- Styles -->
+<link href="{{ url('public/style.css') }}" rel="stylesheet"/>
+<script src="{{ url('public/js/jquery.min.js') }}"></script>
 <script src="{{ url('public/js/bootstrap.min.js') }}"></script>
 </head>
 
@@ -130,7 +132,7 @@
     $(document).ready(function() {
         var duration = 500;
         $(window).scroll(function() {
-            if ((this).scrollTop() > 500) {
+            if ($(this).scrollTop() > 500) {
                 $('.goto').fadeIn(duration);
             } else {
                 $('.goto').fadeOut(duration);
