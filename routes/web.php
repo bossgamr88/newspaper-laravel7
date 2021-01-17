@@ -13,23 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// fontController
+Route::get('/','frontController@index');
+Route::get('category','frontController@category');
+Route::get('post','frontController@post');
 
-Route::get('category', function () {
-    return view('frontend.category');
-});
-
-Route::get('post', function () {
-    return view('frontend.article');
-});
-
-Route::get('admin', function () {
-    return view('backend.index');
-});
-
-Route::get('viewcategory', function () {
-    return view('backend.category');
-});
+// adminController
+Route::get('admin','adminController@index');
+Route::get('viewcategory','adminController@viewcategory');
 

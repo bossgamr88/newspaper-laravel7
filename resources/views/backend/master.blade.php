@@ -3,12 +3,12 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ADMIN DASHBOARD | WEBSITE NAME</title>
-  <link rel="stylesheet" type="text/css" href="{{url('public/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{url('public/css/font-awesome.min.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{url('public/css/ionicons.min.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{url('public/css/menu.css')}}">
-  <link href="{{ url('public/adminstyle.css') }}" rel="stylesheet"/>
-  <!-- <link rel="stylesheet" type="text/css" href="css/adminstyle.css"> -->  
+  <link rel="stylesheet" href="{{url('public/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{url('public/css/font-awesome.min.css')}}">
+  <link rel="stylesheet" href="{{url('public/css/ionicons.min.css')}}">
+  <link rel="stylesheet" href="{{ url('public/css/menu.css') }}">  
+  <link rel="stylesheet" href="{{ url('public/css/adminstyle.css') }}">
+ 
 </head>
 <body>
 
@@ -25,7 +25,7 @@
             <ul class="treeview-menu">
               <li><a href="view-table.html"><i class="fa fa-eye"></i>All Posts</a></li>
               <li><a href="add-post.html"><i class="fa fa-plus-circle"></i>Add Posts</a></li>
-              <li><a href="category.html"><i class="fa fa-plus-circle"></i>Categories</a></li>
+              <li><a href="{{ url('viewcategory') }}"><i class="fa fa-plus-circle"></i>Categories</a></li>
             </ul>
         </li>
         <li class="treeview">
@@ -114,9 +114,9 @@
   </div>
 </footer>
 
-<script type="text/javascript" src="url('public/js/jquery.min.js')}}"></script>
-<script type="text/javascript" src="url('public/js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="url('public/js/app.min.js')}}"></script>
-<script type="text/javascript" src="url('public/js/script.js')}}"></script>
+<script src="{{url('public/js/jquery.min.js')}}"></script>
+<script src="{{url('public/js/bootstrap.min.js')}}"></script>
+<script src="{{url('public/js/app.min.js')}}"></script>
+<script src="{{url('public/js/script.js')}}"></script>
 </body>
 </html>
