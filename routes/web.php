@@ -29,4 +29,7 @@ Route::get('admin', function () {
     return view('backend.index');
 });
 
+Route::get('viewcategory', function () {
+    return view('backend.category');
+});
 
