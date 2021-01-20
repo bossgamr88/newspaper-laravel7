@@ -8,6 +8,9 @@
 		</div>
 		
 		<div class="col-sm-4 cat-form">
+			@if(Session::has('message'))
+			{{ Session('message') }}
+			@endif
 			<h3>Add New Category</h3>
 			<form method="post" action="{{ url('addcategory') }}">
 				{{-- CSRF Token --}}

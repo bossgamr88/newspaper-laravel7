@@ -23,6 +23,9 @@ class crudController extends Controller
 
     	// save categories on database
     	unset($data['tbl']); // เเก้ Unknown cloumn 'tbl' in 'fieId'  
-		DB::table($tbl)->insert($data);    	
+		$data['created_at'] = date('Y-m-d H:i:s');
+		DB::table($tbl)->insert($data);
+		session::flash('message','Data inserted successfully');
+		return redirect()->back();    	
     }
 }
