@@ -12,6 +12,7 @@
 			<form method="post" action="{{ url('addcategory') }}">
 				{{-- CSRF Token --}}
 				{{ csrf_field() }}
+				<input type="hidden" name="tbl" value="{{ encrypt('categories') }}">
 				<div class="form-group">
 					<label>Name</label>
 					<input type="text" name="title" id="category_name" class="form-control">
