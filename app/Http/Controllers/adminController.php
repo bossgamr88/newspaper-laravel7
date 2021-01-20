@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class adminController extends Controller
 {
@@ -11,7 +12,8 @@ class adminController extends Controller
     }
 
     public function viewcategory(){
-    	return view('backend.category');
+    	$data = DB::table('categories')->get();
+    	return view('backend.category',['data' => $data]);
     }
-
+    
 }

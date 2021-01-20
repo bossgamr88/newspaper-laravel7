@@ -9,10 +9,12 @@
 		
 		<div class="col-sm-4 cat-form">
 			<h3>Add New Category</h3>
-			<form method="post">
+			<form method="post" action="{{ url('addcategory') }}">
+				{{-- CSRF Token --}}
+				{{ csrf_field() }}
 				<div class="form-group">
 					<label>Name</label>
-					<input type="text" name="category_name" id="category_name" class="form-control">
+					<input type="text" name="title" id="category_name" class="form-control">
 					<p>The name is how it appears on your site.</p>
 				</div>
 
@@ -23,17 +25,13 @@
 				</div>
 
 				<div class="form-group">
-					<label>Parent Category</label>
-					<select name="parent" class="form-control">
-						<option>None</option>
+					<label>Status</label>
+					<select class="form-control" name="status">
+						<option>on</option>	
+						<option>off</option>		
 					</select>
-					<p>Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</p>
-				</div>	
-				<div class="form-group">
-					<label>Description</label>
-					<textarea class="form-control" name="dscription" rows="5"></textarea>
-					<p>The description is not important and will not be displayed.</p>
 				</div>
+
 				<div class="form-group">
 					<button class="btn btn-primary">Add New Category</button>
 				</div>
@@ -62,73 +60,31 @@
 					<thead>
 						<tr>
 							<th><input type="checkbox" id="select-all"> Name</th>
-							<th>Description</th>
 							<th>Slug</th>
-							<th>Count</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
+						@if(count($data) > 0 )
+						@foreach($data as $category)
 						<tr>
 							<td>
 								<input type="checkbox" name="select-cat"> 
-								<a href="#">Category 1</a>
+								<a href="#">{{ $category->title }}</a>
 							</td>
-							<td></td>
-							<td>category-1</td>
-							<td>0</td>
+							<td>{{ $category->slug }}</td>
+							<td>{{ $category->status }}</td>
 						</tr>
-						<tr>
-							<td>
-								<input type="checkbox" name="select-cat"> 
-								<a href="#">Category 2</a>
-							</td>
-							<td></td>
-							<td>category-2</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>
-								<input type="checkbox" name="select-cat"> 
-								<a href="#">Category 3</a>
-							</td>
-							<td></td>
-							<td>category-3</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>
-								<input type="checkbox" name="select-cat"> 
-								<a href="#">Category 4</a>
-							</td>
-							<td></td>
-							<td>category-4</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>
-								<input type="checkbox" name="select-cat"> 
-								<a href="#">Category 5</a>
-							</td>
-							<td></td>
-							<td>category-5</td>
-							<td>0</td>
-						</tr>
+						@endforeach
+						@else
+							<tr>
+								<td colspan="3">No data found.</td>
+							</tr>
+						@endif
 					</tbody>
 				</table>
 			</div>
-			<div class="row">
-				<div class="col-sm-12">
-			        <ul class="pagination">
-			          <li><a href="#">&laquo;</a></li>
-			          <li><a href="#">1</a></li>
-			          <li><a href="#">2</a></li>
-			          <li class="active"><a href="#">3</a></li>
-			          <li><a href="#">4</a></li>
-			          <li><a href="#">5</a></li>
-			          <li><a href="#">&raquo;</a></li>
-			        </ul>
-			    </div>	
-			</div>  						
+ 						
 		</div>
 	</div>
 </div>
