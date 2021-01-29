@@ -21,5 +21,7 @@ Route::get('post','frontController@post');
 // adminController
 Route::get('admin','adminController@index');
 Route::get('viewcategory','adminController@viewcategory');
-Route::post('addcategory','crudController@insertData');
+Route::get('editcategory/{id}','adminController@editCategory');
 
+Route::post('addcategory','crudController@insertData');
+Route::post('updatecategory/{id}','crudController@updateData');

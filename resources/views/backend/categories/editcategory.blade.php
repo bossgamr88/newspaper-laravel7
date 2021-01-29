@@ -4,7 +4,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12 title">
-			<h1><i class="fa fa-bars"></i> Categories</h1>
+			<h1><i class="fa fa-bars"></i> Edit Category</h1>
 		</div>
 		
 		<div class="col-sm-4 cat-form">
@@ -14,33 +14,41 @@
 				{{ Session('message') }}
 			</div>
 			@endif
-			<h3>Add New Category</h3>
-			<form method="post" action="{{ url('addcategory') }}">
+			<h3>Edit Category</h3>
+			<form method="post" action="
+			{{ url('updatecategory')}}/{{ $singledata->cid }}">
 				{{-- CSRF Token --}}
 				{{ csrf_field() }}
 				<input type="hidden" name="tbl" value="{{ encrypt('categories') }}">
+				<input type="hidden" name="cid" value="{{ $singledata->cid }}">
 				<div class="form-group">
 					<label>Name</label>
-					<input type="text" name="title" id="category_name" class="form-control">
+					<input type="text" name="title" id="category_name" 
+					class="form-control" value="{{ $singledata->title }}">
 					<p>The name is how it appears on your site.</p>
 				</div>
 
 				<div class="form-group">
 					<label>Slug</label>
-					<input type="text" name="slug" id="slug" class="form-control" readonly="">
+					<input type="text" name="slug" id="slug" 
+					class="form-control" readonly="" value="{{ $singledata->slug }}">
 					<p>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</p>
 				</div>
 
 				<div class="form-group">
 					<label>Status</label>
 					<select class="form-control" name="status">
+						<option>{{ $singledata->status }}</option>
+						@if($singledata->status == 'off')
 						<option>on</option>	
+						@else
 						<option>off</option>		
+						@endif
 					</select>
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-primary">Add New Category</button>
+					<button class="btn btn-primary">Update Category</button>
 				</div>
 			</form>	
 
@@ -77,7 +85,9 @@
 						<tr>
 							<td>
 								<input type="checkbox" name="select-cat"> 
-								<a href="#">{{ $category->title }}</a>
+								<a href="
+								{{url('editcategory')}}/{{ $category->cid }}">
+								{{ $category->title }}</a>
 							</td>
 							<td>{{ $category->slug }}</td>
 							<td>{{ $category->status }}</td>

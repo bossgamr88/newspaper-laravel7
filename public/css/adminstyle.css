@@ -68,3 +68,4 @@ input[type=checkbox]{ cursor: pointer; height: 16px; margin: -4px 4px 0 0; width
 	.title{ position: fixed; width: 100%; background: #f1f1f1; top: 0; z-index: 2; }
 }
 
+.close{text-decoration: none !important;}

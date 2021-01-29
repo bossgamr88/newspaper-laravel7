@@ -11,21 +11,21 @@ use Session;
 class crudController extends Controller
 {
     public function insertData(){
-    	// $data = Input::all();
-    	// print_r($data);
     	$data = Input::except('_token');
-    	// print_r($data);
-    	// DB::('')->insert($data);
-
-    	// เปลี่ยนเป็น categories
     	$tbl = decrypt($data['tbl']);
-    	// print_r($tbl);
-
-    	// save categories on database
-    	unset($data['tbl']); // เเก้ Unknown cloumn 'tbl' in 'fieId'  
+    	unset($data['tbl']); 
 		$data['created_at'] = date('Y-m-d H:i:s');
 		DB::table($tbl)->insert($data);
 		session::flash('message','Data inserted successfully');
 		return redirect()->back();    	
+    }
+    public function updateData(){
+        $data = Input::except('_token');
+        $tbl = decrypt($data['tbl']);
+        unset($data['tbl']); 
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        DB::table($tbl)->where(key($data),reset($data))->update($data);
+        session::flash('message','Data updated successfully');
+        return redirect()->back();      
     }
 }

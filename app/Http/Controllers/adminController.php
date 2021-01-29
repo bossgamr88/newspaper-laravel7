@@ -13,7 +13,14 @@ class adminController extends Controller
 
     public function viewcategory(){
     	$data = DB::table('categories')->get();
-    	return view('backend.category',['data' => $data]);
+    	return view('backend.categories.category',['data' => $data]);
+    }
+
+    public function editCategory($id){
+    	$singledata = DB::table('categories')->where('cid',$id)->first();
+		$data = DB::table('categories')->get();
+		return view('backend.categories.editcategory',['data' => $data,
+			'singledata'=>$singledata]);    	
     }
     
 }
