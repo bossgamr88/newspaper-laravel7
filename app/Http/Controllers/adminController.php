@@ -30,7 +30,6 @@ class adminController extends Controller
 	
 	public function multipleDelete(){
 		$data = Input::except('_token');
-		// print_r($data);
 		if ($data['bulk-action'] == 0) {
 			session::flash('message','Please select the action you want to perform');
 			return redirect()->back();	
@@ -42,7 +41,6 @@ class adminController extends Controller
 			return redirect()->back();	
 		}
 		$ids = $data['select-data'];
-		// print_r($ids);
 		foreach($ids as $id){
 			DB::table($tbl)->where($tblid,$id)->delete();
 		}

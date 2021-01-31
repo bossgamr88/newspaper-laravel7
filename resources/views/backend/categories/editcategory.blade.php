@@ -51,10 +51,7 @@
 					<button class="btn btn-primary">Update Category</button>
 				</div>
 			</form>	
-
-
 		</div>
-
 		<div class="col-sm-8 cat-view">
 			<form method="post" action="{{ url('multipledelete') }}">
 				<div class="row">
