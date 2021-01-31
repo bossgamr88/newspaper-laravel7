@@ -25,3 +25,4 @@ Route::get('editcategory/{id}','adminController@editCategory');
 
 Route::post('addcategory','crudController@insertData');
 Route::post('updatecategory/{id}','crudController@updateData');
+Route::post('multipledelete','adminController@multipleDelete');
