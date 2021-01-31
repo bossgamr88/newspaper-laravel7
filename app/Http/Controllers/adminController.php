@@ -38,5 +38,12 @@ class adminController extends Controller
 			session::flash('message','Please select the data you want to delete');
 			return redirect()->back();	
 		}
+		$ids = $data['select-data'];
+		// print_r($ids);
+		foreach($ids as $id){
+			DB::table($tbl)->where($tblid,$id)->delete();
+		}
+		session::flash('message','Data delete successfully');
+		return redirect()->back();
 	}    
 }
