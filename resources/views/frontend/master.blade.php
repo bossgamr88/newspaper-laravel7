@@ -51,15 +51,12 @@
     		</div>
     		<div class="collapse navbar-collapse" id="mynavbar">
     			<ul class="nav nav-justified">
-    				<li><a href="#" class="active"><span class="glyphicon glyphicon-home"></span></a></li>
-    				<li><a href="#">POLITICS</a></li>
-    				<li><a href="#">BUSINESS</a></li>
-    				<li><a href="#">ENTERTAINMENT</a></li>
-    				<li><a href="#">TECHNOLOGY</a></li>
-    				<li><a href="#">SPORTS</a></li>
-    				<li><a href="#">TRAVEL</a></li>
-    				<li><a href="#">STYLE</a></li>
-    				<li><a href="#">HEALTH</a></li>
+    				<li><a href="{{ url('/') }}" class="active"><span class="glyphicon glyphicon-home"></span>
+                    </a></li>
+                    @foreach($categories as $cat)
+    				<li><a href="{{ url('category') }}/{{ $cat->slug }}" 
+                    class="text-uppercase">{{ $cat->title }}</a></li>
+                    @endforeach
         		</ul> 
 			</div>
 		</nav>
