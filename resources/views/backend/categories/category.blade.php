@@ -48,51 +48,59 @@
 		</div>
 
 		<div class="col-sm-8 cat-view">
-			<div class="row">
-				<div class="col-sm-3">
-					<select name="bulk-action" class="form-control">
-						<option>Bulk Action</option>
-						<option>Move to Trash</option>
-					</select>
+			<form method="post" action="{{ url('multipledelete') }}">
+				<div class="row">
+					{{-- CSRF Token --}}
+					{{ csrf_field() }}
+					<input type="hidden" name="tbl" value="{{ encrypt('categories') }}">
+					<input type="hidden" name="tblid" value="{{encrypt('cid') }}">
+						<div class="col-sm-3">
+							<select name="bulk-action" class="form-control">
+								<option value="0">Bulk Action</option>
+								<option value="1">Move to Trash</option>
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<button class="btn btn-default">Apply</button>
+						</div>
+						<div class="col-sm-3 col-sm-offset-4">
+							<input type="text" id="search" class="form-control" placeholder="Search Category">
+						</div>
+					
 				</div>
-				<div class="col-sm-2">
-					<button class="btn btn-default">Apply</button>
-				</div>
-				<div class="col-sm-3 col-sm-offset-4">
-					<input type="text" id="search" name="search" class="form-control" placeholder="Search Category">
-				</div>	
-			</div>
-			<div class="content">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th><input type="checkbox" id="select-all"> Name</th>
-							<th>Slug</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>
-						@if(count($data) > 0 )
-						@foreach($data as $category)
-						<tr>
-							<td>
-								<input type="checkbox" name="select-cat"> 
-								<a href="{{ url('editcategory') }}/{{ $category->cid }}">
-									{{ $category->title }}</a>
-							</td>
-							<td>{{ $category->slug }}</td>
-							<td>{{ $category->status }}</td>
-						</tr>
-						@endforeach
-						@else
+				<div class="content">
+					<table class="table table-striped">
+						<thead>
 							<tr>
-								<td colspan="3">No data found.</td>
+								<th><input type="checkbox" id="select-all"> Name</th>
+								<th>Slug</th>
+								<th>Status</th>
 							</tr>
-						@endif
-					</tbody>
-				</table>
-			</div>
- 						
+						</thead>
+						<tbody>
+							@if(count($data) > 0 )
+							@foreach($data as $category)
+							<tr>
+								<td>
+									<input type="checkbox" name="select-data[]"
+									value="{{ $category->cid }}"> 
+									<a href="
+									{{url('editcategory')}}/{{ $category->cid }}">
+									{{ $category->title }}</a>
+								</td>
+								<td>{{ $category->slug }}</td>
+								<td>{{ $category->status }}</td>
+							</tr>
+							@endforeach
+							@else
+								<tr>
+									<td colspan="3">No data found.</td>
+								</tr>
+							@endif
+						</tbody>
+					</table>
+				</div>
+ 			</form>			
 		</div>
 	</div>
 </div>
