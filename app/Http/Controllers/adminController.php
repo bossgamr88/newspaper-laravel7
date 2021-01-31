@@ -20,6 +20,9 @@ class adminController extends Controller
 
     public function editCategory($id){
     	$singledata = DB::table('categories')->where('cid',$id)->first();
+    	if ($singledata == NULL) {
+    		return redirect('viewcategory');
+    	}
 		$data = DB::table('categories')->get();
 		return view('backend.categories.editcategory',['data' => $data,
 			'singledata'=>$singledata]);    	
