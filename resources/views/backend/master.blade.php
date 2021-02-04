@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="{{url('public/css/ionicons.min.css')}}">
   <link rel="stylesheet" href="{{ url('public/css/menu.css') }}">  
   <link rel="stylesheet" href="{{ url('public/css/adminstyle.css') }}">
+
+  <script src="{{url('public/js/jquery.min.js')}}"></script>
+  <script src="{{url('public/js/bootstrap.min.js')}}"></script>
+  <script src="{{url('public/js/app.min.js')}}"></script>
+  <script src="{{url('public/js/script.js')}}"></script>
  
 </head>
 <body>
@@ -75,6 +80,14 @@
             </ul>
         </li>
         <li class="treeview">
+            <a href="{{ url('settings') }}">
+              <i class="fa fa-gear"></i> <span>Settings</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+        </li>
+        <li class="treeview">
             <a href="#">
               <i class="fa fa-user-plus"></i> <span>Users</span>
               <span class="pull-right-container">
@@ -114,9 +127,6 @@
   </div>
 </footer>
 
-<script src="{{url('public/js/jquery.min.js')}}"></script>
-<script src="{{url('public/js/bootstrap.min.js')}}"></script>
-<script src="{{url('public/js/app.min.js')}}"></script>
-<script src="{{url('public/js/script.js')}}"></script>
+
 </body>
 </html>

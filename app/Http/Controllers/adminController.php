@@ -46,5 +46,10 @@ class adminController extends Controller
 		}
 		session::flash('message','Data delete successfully');
 		return redirect()->back();
+	}
+
+	public function settings(){
+		$data = DB::table('settings')->first();
+		return view('backend.settings',['data'=> $data]);
 	}    
 }

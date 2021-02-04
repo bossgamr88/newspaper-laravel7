@@ -18,7 +18,7 @@ Route::get('/','frontController@index');
 Route::get('category','frontController@category');
 Route::get('post','frontController@post');
 
-// adminController
+// adminController (Category)
 Route::get('admin','adminController@index');
 Route::get('viewcategory','adminController@viewcategory');
 Route::get('editcategory/{id}','adminController@editCategory');
@@ -26,3 +26,6 @@ Route::get('editcategory/{id}','adminController@editCategory');
 Route::post('addcategory','crudController@insertData');
 Route::post('updatecategory/{id}','crudController@updateData');
 Route::post('multipledelete','adminController@multipleDelete');
+
+// adminController (Settings)
+Route::get('settings','adminController@settings');
