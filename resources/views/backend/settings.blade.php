@@ -22,7 +22,11 @@
 				<input type="hidden" name="tbl" value="{{ encrypt('settings') }}">
 				<div class="form-group">
 					<label>Logo</label>
-					<input type="file" name="image" class="form-control">
+					{{--<input type="file" name="image" class="form-control"> --}}
+					<p><input type="file"  accept="image/*" name="image" id="file" class="btn btn-warning" 
+					onchange="loadFile(event)" style="display: none;"></p>
+					<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+					<p><img id="output"/></p>
 				</div>
 
 				<div class="form-group">
@@ -76,12 +80,13 @@
 				<div class="form-group">
 					<label>Logo</label>
 					@if(!empty($data->image))
-					<p><img src="{{ url('public/settings') }}/{{ $data->image }}"><p>
-					<label class="btn btn-warning"> Replace Image
-						<input type="file" name="image" class="form-control" style="display: none;">
-					</label>
+					<p><img src="{{ url('public/settings') }}/{{ $data->image }}" id="output"><p>
+						<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+						<p><label for="file" style="cursor: pointer;" class="btn btn-warning">Replace Image</label></p>
 					@else
-					<input type="file" name="image" class="form-control">
+					<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+					<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+					<p><img id="output"/></p>
 					@endif
 				</div>
 
@@ -113,7 +118,7 @@
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-primary">Add Settings</button>
+					<button class="btn btn-primary">Update Settings</button>
 				</div>
 			</form>
 			<script>	
@@ -139,4 +144,10 @@
 <style>
 	.noshow{display: none;}
 </style>
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
 @endsection
