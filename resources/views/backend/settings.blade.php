@@ -15,7 +15,7 @@
 			</div>
 			@endif
 			<h3>Web Setting</h3>
-			<form method="post" action="{{ url('addsettings') }}">
+			<form method="post" action="{{ url('addsettings') }}" enctype="multipart/form-data">
 				{{-- CSRF Token --}}
 				{{ csrf_field() }}
 				<input type="hidden" name="tbl" value="{{ encrypt('settings') }}">
@@ -33,12 +33,19 @@
 				<div id="socialFieldGroup">
 					<div class="form-group">
 						<label>Social</label>
-						<input type="url" name="url[]" class="form-control">
+						<input type="url" name="social[]" class="form-control">
 						<p class="text-muted">e.g. https://web.facebook.com/pakawat.klomyang.5/</p>
 					</div>
 				</div>
-				<div class="text-right"> <!-- Add jquery script -->
+				<div class="text-right form-group"> <!-- Add jquery script -->
 					<span class="btn btn-warning" id="addSocialField"><i class="fa fa-plus"></i></span>
+				</div>
+				
+				<div class="form-group">
+					<div class="alert alert-danger alert-dismissable noshow" id="socialAlert">
+						<a href="#" class="close" data-dismiss="alert">&times;</a>
+						<strong>Sorry !</strong> You've reached the social fields limit.
+					</div>
 				</div>
 
 				<div class="form-group">
@@ -48,10 +55,20 @@
 		</div>
 	</div>
 </div>
+<style>
+	.noshow{display: none;}
+</style>
 <script>	
+		var socialCounter = 1;
 		$('#addSocialField').click(function() {
+			socialCounter++;
+			if (socialCounter > 5) {
+				// $('socialAlert').show();
+				$('#socialAlert').removeClass('noshow');
+				return;
+			}
 			newDiv = $(document.createElement('div')).attr("class","form-group");
-			newDiv.after().html('<input type="url" name="url[]" class="form-control"></div>');
+			newDiv.after().html('<input type="url" name="social[]" class="form-control"></div>');
 			newDiv.appendTo('#socialFieldGroup');
 		});
 </script>

@@ -29,3 +29,4 @@ Route::post('multipledelete','adminController@multipleDelete');
 
 // adminController (Settings)
 Route::get('settings','adminController@settings');
+Route::post('addsettings','crudController@insertData');
