@@ -2,9 +2,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>COLORMAG - NEWS SITE</title>
+<link href="{{ url('public/css/style.css') }}" rel="stylesheet"/>
 <link href="{{ url('public/css/font-awesome.min.css') }}" rel="stylesheet"/>
 <link href="{{ url('public/css/bootstrap.min.css') }}" rel="stylesheet"/>
-<link href="{{ url('public/style.css') }}" rel="stylesheet"/>
 <script src="{{ url('public/js/jquery.min.js') }}"></script>
 <script src="{{ url('public/js/bootstrap.min.js') }}"></script>
 </head>
@@ -19,10 +19,9 @@
         	<span class="latest">Latest: </span> <a href="#">Wireless Headphones are now on Market</a>
         </div>
     </div>
-    <div class="col-md-3">
-        @foreach($setting->social as $key=>$social)
-        {{--<a href="{{ $social }}"><i class="fa fa-{{$icon[$key]}}"></i>{{ $social }}</a>--}}        
-        <a href="{{ $social }}"><i class="fa fa-{{ $icons[$key] }}"></i></a>
+    <div class="col-md-3 top-social ">
+        @foreach($setting->social as $key=>$social)       
+        <a href="{{ $social }}" class="social-icon"><i class="fa fa-{{ $icons[$key] }}"></i></a>
         @endforeach
     </div>
 </div>
@@ -114,14 +113,11 @@
                 @if($setting->image)
                 <img src="{{ url('public/settings') }}/{{ $setting->image }}" width="100%" alt="newpaper logo"> 
                 @endif
-            <a href="#"><img src="{{url('public/images/icon-fb.png')}}" /></a>
-            <a href="#"><img src="{{url('public/images/icon-twitter.png')}}" /></a>
-            <a href="#"><img src="{{url('public/images/icon-google.png')}}" /></a>
-            <a href="#"><img src="{{url('public/images/icon-insta.png')}}" /></a>
-            <a href="#"><img src="{{url('public/images/icon-pin.png')}}" /></a>
-            <a href="#"><img src="{{url('public/images/icon-youtube.png')}}" /></a><br />
-            <!-- <a href="#top" class="btn btn-default goto"><span class="glyphicon glyphicon-chevron-up"></span></a> -->
-            <a href="#top" class="goto"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                <p>Follow us at:</p>
+                @foreach($setting->social as $key=>$social)       
+                    <a href="{{ $social }}" class="social-icon"><i class="fa fa-{{ $icons[$key] }}"></i></a>
+                @endforeach
+                <a href="#top" class="goto"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </div>
 </div>
 
