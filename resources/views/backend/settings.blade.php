@@ -15,7 +15,8 @@
 			</div>
 			@endif
 			<h3>Web Setting</h3>
-			<form method="post" action="{{ url('addsettings') }}" enctype="multipart/form-data">
+			@if(count($data) < 1 )
+			<form method="post" action="{{ url('addsettings')}}" enctype="multipart/form-data">
 				{{-- CSRF Token --}}
 				{{ csrf_field() }}
 				<input type="hidden" name="tbl" value="{{ encrypt('settings') }}">
@@ -51,7 +52,51 @@
 				<div class="form-group">
 					<button class="btn btn-primary">Add Settings</button>
 				</div>
-			</form>	
+			</form>
+			@else
+			<form method="post" action="{{ url('updatesettings') }}/{{ $data->sid }}" enctype="multipart/form-data">
+				{{-- CSRF Token --}}
+				{{ csrf_field() }}
+				<input type="hidden" name="tbl" value="{{ encrypt('settings') }}">
+				<input type="hidden" name="sid" value="{{ $data->sid }}">
+				<div class="form-group">
+					<label>Logo</label>
+					@if(!empty($data->image))
+					<img src="{{ url('public/settings') }}/{{ $data->image }}">
+					@else
+					<input type="file" name="image" class="form-control">
+					@endif
+				</div>
+
+				<div class="form-group">
+					<label>About Us</label>
+					<textarea name="about" class="form-control" rows="10">
+						{{ $data->about }}
+					</textarea>
+				</div>
+				<div id="socialFieldGroup">
+					<div class="form-group">
+						<label>Social</label>
+						<input type="url" name="social[]" class="form-control">
+						<p class="text-muted">e.g. https://web.facebook.com/pakawat.klomyang.5/</p>
+					</div>
+				</div>
+				<div class="text-right form-group"> <!-- Add jquery script -->
+					<span class="btn btn-warning" id="addSocialField"><i class="fa fa-plus"></i></span>
+				</div>
+				
+				<div class="form-group">
+					<div class="alert alert-danger alert-dismissable noshow" id="socialAlert">
+						<a href="#" class="close" data-dismiss="alert">&times;</a>
+						<strong>Sorry !</strong> You've reached the social fields limit.
+					</div>
+				</div>
+
+				<div class="form-group">
+					<button class="btn btn-primary">Add Settings</button>
+				</div>
+			</form>
+			@endif	
 		</div>
 	</div>
 </div>

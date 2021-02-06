@@ -50,6 +50,11 @@ class adminController extends Controller
 
 	public function settings(){
 		$data = DB::table('settings')->first();
+		if($data){
+			$data->social = explode(',',$data->social);
+			// print_r($data->social);
+			// exit();
+		}
 		return view('backend.settings',['data'=> $data]);
 	}    
 }

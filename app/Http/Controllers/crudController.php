@@ -17,14 +17,10 @@ class crudController extends Controller
 		$data['created_at'] = date('Y-m-d H:i:s');
 
         if (Input::has('social')) {
-            // print_r($data['social']);
             $data['social'] = implode(',', $data['social']);
-            // exit();
         }
         if (Input::has('image')) {
-            // print_r($data['image']);
             $data['image'] = $this->uploadimage($tbl,$data['image']);
-            // exit();
         }
 
 		DB::table($tbl)->insert($data);
@@ -43,10 +39,7 @@ class crudController extends Controller
 
     public function uploadimage($location,$imagename){
         $name = $imagename->getClientOriginalName();
-        // echo $name;
-        // echo $location;
         $imagename->move(public_path().'/'.$location,date('ymdgis').$name);
-        // exit();
         return date('ymdgis').$name;
     }
 }
